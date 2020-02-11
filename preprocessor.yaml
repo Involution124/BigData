@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: preprocessor
+spec:
+  selector:
+    matchLabels:
+      app: preprocessor
+  template:
+    metadata:
+      labels:
+        app: preprocessor
+    spec:
+      containers:
+      - name: preprocessor
+        image: coletyl/preprocessor
+        env:
+         - name: KAFKA_HOST_NAME
+           value: 192.168.64.2
+
