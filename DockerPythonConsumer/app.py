@@ -15,7 +15,7 @@ print("Consumder set up")
 iterator = iter(consumer);
 print(iterator);
 print(next(iterator, b"A"));
-#for message in consumer:
-#    pass ; 
-#    print("Message : ) ")
-#    print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
+for message in consumer:
+    pass ; 
+    print("Message : ) ")
+    print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
