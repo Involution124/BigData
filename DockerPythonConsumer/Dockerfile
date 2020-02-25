@@ -11,7 +11,7 @@ RUN apt-get update \
             git build-essential $ADDITIONAL_PACKAGES \
       && rm -rf /var/lib/apt/lists/*
 
-COPY configure.sh /tmp/
+COPY ./configure.sh /tmp/
 
 ARG SOURCE_BRANCH="master"
 ARG SOURCE_COMMIT="d51d89053afc4b7f50a30ace7b2fcf1b2ddd7598"

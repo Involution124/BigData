@@ -18,10 +18,12 @@ print(iterator);
 print(next(iterator, b"A"));
 for message in consumer:
     pass ; 
-    print("Message : ) ")
-    print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
+#    print("Message : ) ")
+#    print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
+    print("file starting write");
     f = open("/tmp/parsed-image.jpg", "wb")
-    f.write(message.value)
+    f.write("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
     f.close();
+    print("file written");
     process = subprocess.Popen("Darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3_weights -i 0 -thresh 0.25 ./tmp/parsed-image.jpg")
-    process.wait();"
+    process.wait();
