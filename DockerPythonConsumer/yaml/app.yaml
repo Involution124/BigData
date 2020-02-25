@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-deployment
+  labels:
+    app: yolo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yolo
+  template:
+    metadata:
+      labels:
+        app: yolo
+    spec:
+      containers:
+      - name: yolo-container
+        image: bhutaniarnav/yolo-docker:latest
+        env:
+        - name: KAFKA_HOST_NAME
+          value: "kafka-service"
+        ports:
+        - containerPort: 80
