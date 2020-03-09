@@ -13,7 +13,7 @@ print("Got here!")
 numIterations = 0;
 consumer  = KafkaConsumer("images", group_id="processor",  bootstrap_servers=kafka_host, api_version=(0,10))
 print("Consumder set up")
-iterator = iter(consumer);
+#iterator = iter(consumer);
 #print(iterator);
 #print(next(iterator, b"A"));
 for message in consumer:
