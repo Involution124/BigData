@@ -12,8 +12,8 @@ if __name__ == "__main__":
     print("starting main")
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
                                 session_timeout_ms=100000, bootstrap_servers=kafka_host, api_version=(0,10))
-    # iterator = iter(consumer)
-    # next(iterator, b"A")
+    iterator = iter(consumer)
+    next(iterator, b"A")
     for message in consumer:
         print("Message: ")
         print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
