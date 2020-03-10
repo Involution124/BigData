@@ -3,15 +3,13 @@ import os
 import sys
 import subprocess
 
-def get_env_info():
-    kafka_host = os.getenv('KAFKA_HOST_NAME')
-    if(kafka_host == None):
-        print("Failed, no KAFKA_HOST_NAME environment variable was set")
-        sys.exit(1)
+kafka_host = os.getenv('KAFKA_HOST_NAME')
+if(kafka_host == None):
+    print("Failed, no KAFKA_HOST_NAME environment variable was set")
+    sys.exit(1)
 
 if __name__ == "__main__":
     print("starting main")
-    get_env_info()
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
                                 session_timeout_ms=100000, bootstrap_servers=kafka_host, api_version=(0,10))
     # iterator = iter(consumer)
