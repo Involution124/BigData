@@ -15,6 +15,7 @@ if __name__ == "__main__":
     iterator = iter(consumer)
     next(iterator, b"A")
     for message in consumer:
+        pass ; 
         print("Message: ")
         print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
 
