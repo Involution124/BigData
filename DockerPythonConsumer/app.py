@@ -25,6 +25,7 @@
 from kafka import KafkaConsumer
 import os
 import sys
+import tempfile
 import subprocess
 
 kafka_host = os.getenv('KAFKA_HOST_NAME')
@@ -72,12 +73,12 @@ for message in consumer:
     filecache.close()
     print("finished cache")
 
-def get_image(parsed_kafka_msg):
-    cache = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg", prefix="classify")
-#    req = urllib.request.urlopen(parsed_kafka_msg["url"])
-    cache.write(parsed_kafaka_msg)
-    cache.close()
-    return cache
+# def get_image(parsed_kafka_msg):
+#     cache = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg", prefix="classify")
+# #    req = urllib.request.urlopen(parsed_kafka_msg["url"])
+#     cache.write(parsed_kafaka_msg)
+#     cache.close()
+#     return cache
 # # #    print("file starting write");
 # # #    f = open("/tmp/parsed-image.jpg", "wb")
 # # #    f.write("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
