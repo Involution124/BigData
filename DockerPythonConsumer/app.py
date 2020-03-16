@@ -32,6 +32,13 @@ if(kafka_host == None):
     print("Failed, no KAFKA_HOST_NAME environment variable was set")
     sys.exit(1)
 
+def get_image(parsed_kafka_msg):
+    cache = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg", prefix="classify")
+#    req = urllib.request.urlopen(parsed_kafka_msg["url"])
+    cache.write(parsed_kafaka_msg)
+    cache.close()
+    return cache
+
 if __name__ == "__main__":
     print("starting main")
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
