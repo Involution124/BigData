@@ -1,47 +1,47 @@
-from kafka import KafkaConsumer
-import os
-import sys
-
-print("Here");
-kafka_host = os.getenv('KAFKA_HOST_NAME')
-if(kafka_host == None):
-    print("Failed, no KAFKA_HOST_NAME environment variable was set")
-    sys.exit(1)
-
-print("Got here!")
-numIterations = 0;
-consumer  = KafkaConsumer("images", group_id="processor",  bootstrap_servers=kafka_host)
-print("Consumder set up")
-iterator = iter(consumer);
-print(iterator);
-print(next(iterator, b"A"));
-for message in consumer:
-    pass ; 
-    print("Message : ) ")
-    print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
-
-
-
 # from kafka import KafkaConsumer
 # import os
 # import sys
-# import subprocess
 
+# print("Here");
 # kafka_host = os.getenv('KAFKA_HOST_NAME')
 # if(kafka_host == None):
 #     print("Failed, no KAFKA_HOST_NAME environment variable was set")
 #     sys.exit(1)
 
-# if __name__ == "__main__":
-#     print("starting main")
-#     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
-#                                 session_timeout_ms=100000, bootstrap_servers=kafka_host)
-#     iterator = iter(consumer)
-#     next(iterator, b"A")
-#     for message in consumer:
-#         pass
-#         print("Message: ")
-#         print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
+# print("Got here!")
+# numIterations = 0;
+# consumer  = KafkaConsumer("images", group_id="processor",  bootstrap_servers=kafka_host)
+# print("Consumder set up")
+# iterator = iter(consumer);
+# print(iterator);
+# print(next(iterator, b"A"));
+# for message in consumer:
+#     pass ; 
+#     print("Message : ) ")
+#     print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
+
+
+
+from kafka import KafkaConsumer
+import os
+import sys
+import subprocess
+
+kafka_host = os.getenv('KAFKA_HOST_NAME')
+if(kafka_host == None):
+    print("Failed, no KAFKA_HOST_NAME environment variable was set")
+    sys.exit(1)
+
+if __name__ == "__main__":
+    print("starting main")
+    consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
+                                session_timeout_ms=100000, bootstrap_servers=kafka_host)
+    iterator = iter(consumer)
+    next(iterator, b"A")
+    for message in consumer:
+        pass
+        print("Message: ")
+        print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key, message.value))
 
 
 
