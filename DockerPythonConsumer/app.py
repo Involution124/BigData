@@ -25,6 +25,7 @@
 from kafka import KafkaConsumer
 import os
 import sys
+import cmd
 import tempfile
 import subprocess
 
