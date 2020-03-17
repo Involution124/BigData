@@ -69,7 +69,7 @@ if __name__ == "__main__":
         # filecache = get_image(message.value)
         cache = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg", prefix="classify")
 #       req = urllib.request.urlopen(parsed_kafka_msg["url"])
-        cache.write(message.value.decode("utf-16"))
+        cache.write(bytes(message.value))
         cache.close()
         process = subprocess.Popen("Darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3_weights -i 0 -thresh 0.25 "+cmd.format(file=os.path.abspath(cache.name)).split())
         print("Got to post-cache")
