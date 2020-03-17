@@ -11,7 +11,7 @@ if(kafka_host == None):
     sys.exit(1)
 
 if __name__ == "__main__":
-    cmd = 'darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3.weights -i 0 -thresh 0.25 {file}'
+    cmd = '/usr/local/bin/darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3.weights -i 0 -thresh 0.25 {file}'
 
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000,
                                 session_timeout_ms=100000, bootstrap_servers=kafka_host)
