@@ -1,8 +1,8 @@
+#Please tag this file as bhutaniarnav/yolo-docker-2 and push to dockerhub or the yaml file will not pull the correct image
 FROM ubuntu:18.04
 LABEL maintianer="Arnav Bhutani"
 
 ENV DEBIAN_FRONTEND noninteractive
-
 
 ARG ADDITIONAL_PACKAGES="python3.6 python3-pip libopencv-dev wget"
 
@@ -12,6 +12,10 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 
 COPY ./configure.sh /tmp/
+COPY ./startup.sh /tmp/
+
+RUN pip3 install kafka-python
+RUN wget https://pjreddie.com/media/files/yolov3.weights
 
 ARG SOURCE_BRANCH="master"
 ARG SOURCE_COMMIT="d51d89053afc4b7f50a30ace7b2fcf1b2ddd7598"
@@ -33,9 +37,4 @@ RUN git clone https://github.com/Involution124/BigData.git && cd BigData/DockerP
       && cp app.py / \
       && cd ../.. && rm -rf BigData
 
-RUN pip3 install kafka-python
-RUN wget https://pjreddie.com/media/files/yolov3.weights
-
-COPY app.py /tmp/
-
-CMD ["python3", "app.py"]
+CMD ["python3", "-m",  "app"]
