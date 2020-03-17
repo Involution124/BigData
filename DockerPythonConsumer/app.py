@@ -25,4 +25,5 @@ if __name__ == "__main__":
         out, err = process.communicate()
         print("stdout: %s", out)
         print("stderr: %s", err)
+        print("exited detection")
         filecache.close()
