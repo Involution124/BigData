@@ -25,7 +25,6 @@
 from kafka import KafkaConsumer
 import os
 import sys
-import cmd
 import tempfile
 import subprocess
 
@@ -43,6 +42,7 @@ if(kafka_host == None):
 
 if __name__ == "__main__":
     print("starting main")
+    cmd = 'Darknet detector test ./cfg/yolo.cfg ./cfg/yolov3.cfg ./yolo.weights -i 0 -thresh 0.25 {file}'
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
                                 session_timeout_ms=100000, bootstrap_servers=kafka_host)
 #     iterator = iter(consumer)
@@ -72,9 +72,11 @@ if __name__ == "__main__":
 #       req = urllib.request.urlopen(parsed_kafka_msg["url"])
         cache.write(bytes(message.value))
         cache.close()
-        process = subprocess.Popen("Darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3_weights -i 0 -thresh 0.25 "+cmd.format(file=os.path.abspath(cache.name)).split())
+        process = subprocess.Popen(cmd.format(file=os.path.abspath(cache.name)), stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+        out, err = process.communicate()
         print("Got to post-cache")
-        process.wait()
+        print("stdout: %s", out)
+        print("stderr: %s", err)
         # filecache.close()
         print("finished cache")
 
