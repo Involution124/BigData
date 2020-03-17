@@ -23,8 +23,8 @@ numIterations = 0
 for filename in os.listdir("P2E_S5_C1.1"):
     with open("P2E_S5_C1.1/" + filename, "rb") as image:
         numIterations = numIterations+1
-        if(numIterations >= 50):
-            exit(0)
+        if(numIterations != 160):
+            continue
         f = image.read()
         b = bytearray(f) 
         print("Message sent")
