@@ -24,6 +24,5 @@ if __name__ == "__main__":
         process = subprocess.Popen(cmd.format(file=os.path.abspath(filecache.name)).split(), stdout = subprocess.PIPE, stderr = subprocess.PIPE)
         out, err = process.communicate()
         print("stdout: %s", out)
-        print("stderr: %s", err)
-        print("exited detection")
+        #print("stderr: %s", err)
         filecache.close()
