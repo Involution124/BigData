@@ -25,6 +25,7 @@
 from kafka import KafkaConsumer
 import os
 import sys
+improt time
 import tempfile
 import subprocess
 
@@ -73,6 +74,8 @@ if __name__ == "__main__":
         cache.write(bytes(message.value))
         cache.close()
         filecache = cache
+        print(os.path.abspath(filecache.name))
+        time.sleep(1000000)
         process = subprocess.Popen(cmd.format(file=os.path.abspath(filecache.name)), stdout = subprocess.PIPE, stderr = subprocess.PIPE)
         out, err = process.communicate()
         print("Got to post-cache")
