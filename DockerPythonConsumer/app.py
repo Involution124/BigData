@@ -25,7 +25,7 @@
 from kafka import KafkaConsumer
 import os
 import sys
-improt time
+import time
 import tempfile
 import subprocess
 
