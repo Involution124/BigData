@@ -42,7 +42,7 @@ if(kafka_host == None):
 
 if __name__ == "__main__":
     print("starting main")
-    cmd = 'Darknet detector test ./cfg/coco.cfg ./cfg/yolov3.cfg ./yolov3.weights -i 0 -thresh 0.25 {file}'
+    cmd = 'Darknet detector test ./cfg/coco.data ./cfg/yolov3.cfg ./yolov3.weights -i 0 -thresh 0.25 {file}'
     consumer  = KafkaConsumer("images", group_id="processor",  request_timeout_ms=120000, 
                                 session_timeout_ms=100000, bootstrap_servers=kafka_host)
 #     iterator = iter(consumer)
