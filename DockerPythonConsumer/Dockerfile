@@ -1,40 +1,23 @@
-#Please tag this file as bhutaniarnav/yolo-docker-2 and push to dockerhub or the yaml file will not pull the correct image
-FROM ubuntu:18.04
-LABEL maintianer="Arnav Bhutani"
+FROM tensorflow/tensorflow:latest-py3
+LABEL maintianer="Tyler Cole"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG ADDITIONAL_PACKAGES="python3.6 python3-pip libopencv-dev wget"
+ADD Keras-CoDeepNEAT /Keras-CoDeepNEAT
 
-RUN apt-get update \
-      && apt-get install --no-install-recommends --no-install-suggests -y gnupg2 ca-certificates \
-            git build-essential $ADDITIONAL_PACKAGES \
-      && rm -rf /var/lib/apt/lists/*
-
-COPY ./configure.sh /tmp/
-COPY ./startup.sh /tmp/
+RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y graphviz libgraphviz-dev
 
 RUN pip3 install kafka-python
-RUN wget https://pjreddie.com/media/files/yolov3.weights
+RUN pip3 install keras
+RUN pip3 install networkx
+RUN pip3 install pydot
+RUN pip3 install graphviz
+RUN pip3 install pygraphviz
+RUN pip3 install sklearn
+RUN pip3 install matplotlib
 
-ARG SOURCE_BRANCH="master"
-ARG SOURCE_COMMIT="d51d89053afc4b7f50a30ace7b2fcf1b2ddd7598"
-ENV SOURCE_BRANCH $SOURCE_BRANCH
-ENV SOURCE_COMMIT $SOURCE_COMMIT
 
-ARG CONFIG
+#RUN git clone https://github.com/sbcblab/Keras-CoDeepNEAT.git;
 
-RUN git clone https://github.com/AlexeyAB/darknet.git && cd darknet \
-      && git checkout $SOURCE_BRANCH \
-      && git reset --hard $SOURCE_COMMIT \
-      && /tmp/configure.sh cpu-cv && make \
-      && cp darknet /usr/local/bin \
-      && cp -r cfg / \
-      && cp -r data / \
-      && cd .. && rm -rf darknet
-
-RUN git clone https://github.com/Involution124/BigData.git && cd BigData/DockerPythonConsumer \
-      && cp app.py / \
-      && cd ../.. && rm -rf BigData
-
-CMD ["python3", "-m",  "app"]
+CMD ["python3", "-v"]
+CMD ["python3",  "/Keras-CoDeepNEAT/example_scripts/run_cifar10.py"]
