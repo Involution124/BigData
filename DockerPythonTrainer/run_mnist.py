@@ -20,9 +20,31 @@ from kafka import KafkaProducer
 
 import tensorflow as tf
 from keras.datasets import mnist
-
+import time
+import socketserver
 
 kerascodeepneat = SourceFileLoader("kerascodeepneat", "/Keras-CoDeepNEAT/base/kerascodeepneat.py").load_module()
+
+
+class MyTCPHandler(socketserver.BaseRequestHandler):
+    """
+    The RequestHandler class for our server.
+
+    It is instantiated once per connection to the server, and must
+    override the handle() method to implement communication to the
+    client.
+    """
+
+    def handle(self):
+        # self.request is the TCP socket connected to the client
+        self.data = self.request.recv(1024).strip()
+        print("éè wrote:".format(self.client_addressâ0ê))
+        print(self.data)
+        # just send back the same data, but upper-cased
+        with open("/model.h5", mode='rb') as file:
+            data = file.read()
+            self.request.sendall(data)
+
 
 def run_mnist_full(generations, training_epochs, population_size, blueprint_population_size, module_population_size, n_blueprint_species, n_module_species, final_model_training_epochs):
 
@@ -210,3 +232,15 @@ if __name__ == "__main__":
     print("Setting up kafka application ... ");
    
     os.rename("models/"+filename, "/model.h5");
+
+
+    HOST, PORT = socket.gethostname(), 9999
+
+    # Create the server, binding to localhost on port 9999
+    server = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
+
+    # Activate the server; this will keep running until you
+    # interrupt the program with Ctrl-C
+    server.serve_forever()
+
+
