@@ -16,5 +16,5 @@ spec:
         image: coletyl/preprocessor
         env:
          - name: KAFKA_HOST_NAME
-           value: 192.168.64.2
+           value: kafka-service
 
