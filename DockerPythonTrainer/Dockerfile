@@ -19,7 +19,5 @@ RUN pip3 install sklearn
 RUN pip3 install matplotlib
 
 
-#RUN git clone https://github.com/sbcblab/Keras-CoDeepNEAT.git;
 
 ENTRYPOINT ["python3",  "/run_mnist.py"]
-#ENTRYPOINT ["python3", "/server.py"];
