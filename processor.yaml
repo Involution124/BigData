@@ -16,5 +16,5 @@ spec:
         image: coletyl/processor
         env:
          - name: KAFKA_HOST_NAME
-           value: kafka-service
+           value: kafka-service-pre
 
