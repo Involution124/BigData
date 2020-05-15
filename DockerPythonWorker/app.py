@@ -23,7 +23,7 @@ while(1):
         bytestream = bytes(message.value)
         file_like_object = io.BytesIO(bytestream)
         tar = tarfile.open(fileobj=file_like_object)
-        for member in tar.getmembers();
+        for member in tar.getmembers():
             f = tar.extractfile(member);
             print("F = " + str(f));
         break;

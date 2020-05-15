@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-py3
+FROM gw000/keras:2.1.4-py3-tf-cpu 
 LABEL maintianer="Tyler Cole"
 
 
