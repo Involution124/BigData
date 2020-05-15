@@ -1,12 +1,9 @@
 from kafka import KafkaProducer
+from keras.datasets import mnist
+
 import os
 import sys
-import tarfile
-import urllib.request
 
-import tensorflow as tf
-from tensorflow import keras
-from keras.datasets import mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 # Connect to Kafka

@@ -1,14 +1,11 @@
 from kafka import KafkaConsumer
 import os
-import sys
-import time
-import tempfile
-import subprocess
 import socket
-import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import io
+
+
 print("We are here");
 kafka_host = os.getenv('KAFKA_HOST_NAME')
 if(kafka_host == None):

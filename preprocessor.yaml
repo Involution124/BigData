@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: preprocessor
-        image: coletyl/preprocessor
+        image: bhutaniarnav/producer
         env:
          - name: KAFKA_HOST_NAME
            value: kafka-service-pre

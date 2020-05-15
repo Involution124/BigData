@@ -2,10 +2,7 @@ from kafka import KafkaConsumer
 import os
 import sys
 import time
-import tempfile
-import subprocess
 import socket
-import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 
@@ -30,7 +27,7 @@ if __name__ == "__main__":
             time.sleep(5);
             sock.close();
             continue 
-       sock.sendall(bytes(data + " ", "utf-8"))
+        sock.sendall(bytes(data + " ", "utf-8"))
         # Receive data from the server and shut down
         print("Receiving the model:");
         received = b'';
