@@ -5,7 +5,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ADD Keras-CoDeepNEAT /Keras-CoDeepNEAT
 ADD run_mnist.py /run_mnist.py
-ADD server.py /server.py
 
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y graphviz libgraphviz-dev
 
