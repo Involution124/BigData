@@ -11,4 +11,4 @@ RUN pip3 install keras
 RUN pip3 install networkx
 
 
-#ENTRYPOINT ["python3",  "app.py"]
+ENTRYPOINT ["python3",  "app.py"]

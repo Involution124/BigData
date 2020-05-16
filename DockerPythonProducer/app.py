@@ -18,12 +18,12 @@ if(kafka_host == None):
 # Setup Kafka Producer
 producer = KafkaProducer(bootstrap_servers=kafka_host)
 numIterations = 0
-for x_test as test:
+for test in x_test:
     numIterations = numIterations+1
     # Stop after 50 iterations
     if(numIterations >= 50):
         exit(0)
-    b = test1.tobytes()
+    b = test.tobytes()
     print("Message sent")
     response = producer.send('images', b)
     print("Response = " + str(response))

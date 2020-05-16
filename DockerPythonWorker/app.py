@@ -52,7 +52,7 @@ while(1):
     print("New shape = " + str(input_x.shape));
     score = model.fit(input_x, input_y, epochs=training_epochs, validation_split=float(validation_split), batch_size=128)
     producer = KafkaProducer(bootstrap_servers=kafka_host)
-    print("index, score = ", + str(index) + " "  + str(score));
+    print("index, score = " + str(index) + " "  + str(score));
     producer.send('models-fitted', {index: score})
     print("Resposne = " + str(response))
     result = response.get(timeout=30)
