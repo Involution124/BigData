@@ -1,26 +1,11 @@
 import sys
 sys.path.append("..")
-import keras, logging, random, pydot, copy, uuid, os, csv, json
-import numpy as np
-import networkx as nx
-import matplotlib.pyplot as plt
-from enum import Enum, auto
-from typing import List
-from keras.utils.vis_utils import plot_model
-from sklearn.cluster import KMeans
-from sklearn.neighbors import NearestCentroid
-from sklearn.preprocessing import scale
-from keras import backend as K
+import keras, logging, os
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import EarlyStopping, ModelCheckpoint, CSVLogger
-from keras import regularizers
 from importlib.machinery import SourceFileLoader
-from kafka import KafkaProducer
 
-
-import tensorflow as tf
 from keras.datasets import mnist
-import time
 import socketserver
 
 kerascodeepneat = SourceFileLoader("kerascodeepneat", "/Keras-CoDeepNEAT/base/kerascodeepneat.py").load_module()

@@ -2,10 +2,7 @@ from kafka import KafkaConsumer
 import os
 import sys
 import time
-import tempfile
-import subprocess
 import socket
-import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 
