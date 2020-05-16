@@ -17,6 +17,9 @@ spec:
           image: coletyl/trainer
           ports:
             - containerPort: 9999
+          env:
+           - name: KAFKA_HOST_NAME
+             value: kafka-service-train
 
 ---
 
